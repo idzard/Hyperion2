@@ -73,16 +73,16 @@ void setupWindows(Hyperion *hyp)
 
             
 
-            {.column = 2, .slot = 0, .pattern = new Window::GenericFallingPattern("Falling together", 0.5, 0, 64)},
-            {.column = 2, .slot = 1, .pattern = new Window::GenericFallingPattern("Falling one by one", 0.5, 1, 32)},
+            {.column = 2, .slot = 0, .pattern = new Window::GenericFallingPattern("Falling together", 0.5, 0, 128)},
+            {.column = 2, .slot = 1, .pattern = new Window::GenericFallingPattern("Falling one by one", 0.5, 1, 64)},
 
-            {.column = 2, .slot = 2, .pattern = new Window::GenericPositionLFOPattern<Cos>("Zig-zag together", 1, 0, 64)},
-            {.column = 2, .slot = 3, .pattern = new Window::GenericPositionLFOPattern<Cos>("Zig-zag one by one", 1, 1, 64)},
-            {.column = 2, .slot = 4, .pattern = new Window::GenericPositionLFOPattern<Cos>("Zig-zag pairs", 1, 4, 64)},
+            {.column = 2, .slot = 2, .pattern = new Window::GenericPositionLFOPattern<Cos>("Zig-zag together", 1, 0, 128)},
+            {.column = 2, .slot = 3, .pattern = new Window::GenericPositionLFOPattern<Cos>("Zig-zag one by one", 1, 1, 128)},
+            {.column = 2, .slot = 4, .pattern = new Window::GenericPositionLFOPattern<Cos>("Zig-zag pairs", 1, 4, 128)},
 
-            {.column = 2, .slot = 5, .pattern = new Window::GenericGapLFOPattern<NegativeCosFast>("Gap snake", 1, 0.25, 32)},
-            {.column = 2, .slot = 6, .pattern = new Window::GenericGapLFOPattern<NegativeCosFast>("Gap one by one", 1, 1, 32)},
-            {.column = 2, .slot = 7, .pattern = new Window::GenericGapLFOPattern<NegativeCosFast>("Gap pair", 1, 4, 32)},
+            {.column = 2, .slot = 5, .pattern = new Window::GenericGapLFOPattern<NegativeCosFast>("Gap snake", 1, 0.25, 64)},
+            {.column = 2, .slot = 6, .pattern = new Window::GenericGapLFOPattern<NegativeCosFast>("Gap one by one", 1, 1, 64)},
+            {.column = 2, .slot = 7, .pattern = new Window::GenericGapLFOPattern<NegativeCosFast>("Gap pair", 1, 4, 64)},
 
             // {.column = 2, .slot = 0, .pattern = new Window::SinPattern()},
             // {.column = 2, .slot = 1, .pattern = new Window::SinGapPattern()},
@@ -100,8 +100,8 @@ void setupWindows(Hyperion *hyp)
                                         });
 
     const char* hosts[4] = {
-        "window1.local",  // "169.254.0.201",
-        "window2.local",
+        "10.0.0.25",  // "169.254.0.201",
+        "10.0.0.102",
         "window3.local",
         "window4.local",
     };
