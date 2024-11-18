@@ -55,13 +55,13 @@ namespace Window
 
         inline void Calculate(MotorPosition *pixels, int width, bool active, Params *params) override
         {
-            if (!transition.Calculate(active))
+            if (!active)
                 return; // the fade out is done. we can skip calculating pattern data
 
             for (int index = 0; index < width; index += 2)
             {
-                pixels[index] = toTopPostion(top, 0, transition.getValue());
-                pixels[index + 1] = toBottomPostion(bottom, 0, transition.getValue());
+                pixels[index] = toTopPostion(top, 0, 1);
+                pixels[index + 1] = toBottomPostion(bottom, 0, 1);
             }
         }
     };
@@ -79,7 +79,7 @@ namespace Window
 
         inline void Calculate(MotorPosition *pixels, int width, bool active, Params *params) override
         {
-            if (!transition.Calculate(active))
+            if (!active)
                 return; // the fade out is done. we can skip calculating pattern data
 
             float velocity = params->getVelocity(20000, 2000);
@@ -95,8 +95,8 @@ namespace Window
             {
                 float pos = lfo.getValue(amount * float(index) / width);
                 float pos2 = addGapMargin(pos, gap);
-                pixels[index] = toTopPostion(pos2, gap, transition.getValue());
-                pixels[index + 1] = toBottomPostion(pos2, gap, transition.getValue());
+                pixels[index] = toTopPostion(pos2, gap, 1);
+                pixels[index + 1] = toBottomPostion(pos2, gap, 1);
             }
         }
     };
@@ -114,7 +114,7 @@ namespace Window
 
         inline void Calculate(MotorPosition *pixels, int width, bool active, Params *params) override
         {
-            if (!transition.Calculate(active))
+            if (!active)
                 return; // the fade out is done. we can skip calculating pattern data
 
             // lfo.setPeriod(params->getVelocity(6000, 500));
@@ -133,8 +133,8 @@ namespace Window
             for (int index = 0; index < width; index += 2)
             {
                 float gap = 0.5 * lfo.getValue(amount * float(index) / width);
-                pixels[index] = toTopPostion(0.5, gap, transition.getValue());
-                pixels[index + 1] = toBottomPostion(0.5, gap, transition.getValue());
+                pixels[index] = toTopPostion(0.5, gap, 1);
+                pixels[index + 1] = toBottomPostion(0.5, gap, 1);
             }
         }
     };
@@ -153,7 +153,7 @@ namespace Window
 
         inline void Calculate(MotorPosition *pixels, int width, bool active, Params *params) override
         {
-            if (!transition.Calculate(active))
+            if (!active)
                 return; // the fade out is done. we can skip calculating pattern data
 
             // int period = params->getVelocity(20000, 2000);
@@ -186,8 +186,8 @@ namespace Window
                     gap2 = 0;
                 }
 
-                pixels[index] = toTopPostion(addGapMargin(pos, gap2), gap2, transition.getValue());
-                pixels[index + 1] = toBottomPostion(addGapMargin(pos, gap2), gap2, transition.getValue());
+                pixels[index] = toTopPostion(addGapMargin(pos, gap2), gap2, 1);
+                pixels[index + 1] = toBottomPostion(addGapMargin(pos, gap2), gap2, 1);
             }
         }
     };
@@ -205,7 +205,7 @@ namespace Window
 
         inline void Calculate(MotorPosition *pixels, int width, bool active, Params *params) override
         {
-            if (!transition.Calculate(active))
+            if (!active)
                 return; // the fade out is done. we can skip calculating pattern data
 
             // float velocity = params->getVelocity(20000, 2000);
@@ -227,8 +227,8 @@ namespace Window
             {
                 float pos = lfo.getValue(amount * float(index) / width);
                 float pos2 = addGapMargin(pos, gap);
-                pixels[index] = toTopPostion(pos2, gap, transition.getValue());
-                pixels[index + 1] = toBottomPostion(pos2, gap, transition.getValue());
+                pixels[index] = toTopPostion(pos2, gap, 1);
+                pixels[index + 1] = toBottomPostion(pos2, gap, 1);
             }
         }
     };
@@ -253,7 +253,7 @@ namespace Window
 
         inline void Calculate(MotorPosition *pixels, int width, bool active, Params *params) override
         {
-            if (!transition.Calculate(active))
+            if (!active)
                 return; // the fade out is done. we can skip calculating pattern data
 
             float intensity = params->getIntensity(0.05, 0.25);
@@ -264,8 +264,8 @@ namespace Window
                 float pos = 1. - lfo.getValue(phase);
                 float gap = (lfoDir.getValue(phase) > 0.5) ? intensity : 0;
 
-                pixels[index] = toTopPostion(addGapMargin(pos, gap), gap, transition.getValue());
-                pixels[index + 1] = toBottomPostion(addGapMargin(pos, gap), gap, transition.getValue());
+                pixels[index] = toTopPostion(addGapMargin(pos, gap), gap, 1);
+                pixels[index + 1] = toBottomPostion(addGapMargin(pos, gap), gap, 1);
             }
         }
     };
@@ -288,7 +288,7 @@ namespace Window
 
         inline void Calculate(MotorPosition *pixels, int width, bool active, Params *params) override
         {
-            if (!transition.Calculate(active))
+            if (!active)
                 return; // the fade out is done. we can skip calculating pattern data
 
             float gap = params->getIntensity(0.05, 0.25);
@@ -298,10 +298,10 @@ namespace Window
                 float phase = amount * float(index/2) / width;
                 float pos = lfo.getValue(phase);
 
-                // pixels[index] = toTopPostion(addGapMargin(pos, gap), gap, transition.getValue());
-                // pixels[index + 1] = toBottomPostion(addGapMargin(pos, gap), gap, transition.getValue());
-                pixels[index] = toTopPostion(pos, gap, transition.getValue());
-                pixels[index + 1] = toBottomPostion(pos, gap, transition.getValue());
+                // pixels[index] = toTopPostion(addGapMargin(pos, gap), gap, 1);
+                // pixels[index + 1] = toBottomPostion(addGapMargin(pos, gap), gap, 1);
+                pixels[index] = toTopPostion(pos, gap, 1);
+                pixels[index + 1] = toBottomPostion(pos, gap, 1);
             }
         }
     };
@@ -324,7 +324,7 @@ namespace Window
 
         inline void Calculate(MotorPosition *pixels, int width, bool active, Params *params) override
         {
-            if (!transition.Calculate(active))
+            if (!active)
                 return; // the fade out is done. we can skip calculating pattern data
 
 
@@ -334,10 +334,10 @@ namespace Window
                 float gap = lfo.getValue(phase) * params->getIntensity(0.05, 0.25);
                 float pos=0.5;
 
-                // pixels[index] = toTopPostion(addGapMargin(pos, gap), gap, transition.getValue());
-                // pixels[index + 1] = toBottomPostion(addGapMargin(pos, gap), gap, transition.getValue());
-                pixels[index] = toTopPostion(pos, gap, transition.getValue());
-                pixels[index + 1] = toBottomPostion(pos, gap, transition.getValue());
+                // pixels[index] = toTopPostion(addGapMargin(pos, gap), gap, 1);
+                // pixels[index + 1] = toBottomPostion(addGapMargin(pos, gap), gap, 1);
+                pixels[index] = toTopPostion(pos, gap, 1);
+                pixels[index + 1] = toBottomPostion(pos, gap, 1);
             }
         }
     };
